@@ -28,6 +28,13 @@ main =
 type alias Model =
   { focusedElement : String
   , sections : List Section
+  , socials : List Social
+  }
+
+type alias Social =
+  { name : String
+  , icon : String
+  , link : String
   }
 
 --
@@ -40,6 +47,10 @@ init flags =
       , Section.experience
       , Section.projects
       , Section.skills
+      ]
+    , socials =
+      [ { name = "Twitter", icon = "fab fa-twitter-square", link = "https://twitter.com/_pdandy" }
+      , { name = "Email", icon = "fas fa-envelope", link = "mailto:andrew.thompson@qmul.ac.uk" }
       ]
     }
   , Cmd.none
@@ -74,9 +85,8 @@ view model =
       [ div [] 
         [ h1 [ class "text-3xl" ] [ text "Andrew Thompson" ]
         , h2 [ class "text-xl mb-4" ] [ text "PhD student @ Queen Mary University of London" ]
-        , p [ class "text-justify" ] [ text <| "This is some more information about me. It should "
-          ++ "span multiple lines so I can see how everything will end up being "
-          ++ "arranged." ]
+        , div [ class "flex justify-around" ]
+            <| List.map socialButton model.socials
         ]
       , nav [ class "flex flex-col items-center justify-center" ]
         <| List.map (navButton model.focusedElement) model.sections
@@ -85,6 +95,13 @@ view model =
         <| List.map Section.view model.sections
     ]
     
+--
+socialButton : Social -> Html Msg
+socialButton social =
+  a [ class "flex flex-col", href social.link ]
+    [ i [ class social.icon, class "fa-2x" ] []
+    ]
+
 --
 navButton : String -> Section -> Html Msg
 navButton focusedSectionId section =
