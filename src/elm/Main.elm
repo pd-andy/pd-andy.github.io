@@ -1,8 +1,16 @@
-module Main exposing (Model, Msg, update, view, subscriptions, init)
+port module Main exposing (Model, Msg, update, view, subscriptions, init)
 
 import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
+import Section exposing (Section)
+
+-- PORTS -----------------------------------------------------------------------
+-- 
+port onFocusChange : (String -> msg) -> Sub msg
+--
+port scrollToElement : String -> Cmd msg
 
 -- MAIN ------------------------------------------------------------------------
 --
@@ -18,34 +26,43 @@ main =
 -- MODEL -----------------------------------------------------------------------
 --
 type alias Model =
-  {
+  { focusedElement : String
+  , sections : List Section
   }
 
 --
 init : flags -> (Model, Cmd Msg)
 init flags = 
-  ( Model
+  ( { focusedElement = "about"
+    , sections =
+      [ Section.about
+      , Section.education
+      , Section.experience
+      , Section.projects
+      , Section.skills
+      ]
+    }
   , Cmd.none
   )
 
 -- UPDATE ----------------------------------------------------------------------
 --
 type Msg
-  = Msg1
-  | Msg2
+  = FocusedElement String
+  | ScrollTo String
 
 --
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
-    Msg1 ->
-      ( model
+    FocusedElement id ->
+      ( { model | focusedElement = id }
       , Cmd.none
       )
 
-    Msg2 ->
+    ScrollTo id ->
       ( model
-      , Cmd.none
+      , scrollToElement id
       )
 
 -- VIEW ------------------------------------------------------------------------
@@ -53,60 +70,38 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div [ id "app" ]
-    [ aside [ class "flex flex-col items-center justify-around bg-gray-200 text-gray-900" ]
+    [ aside [ class "flex flex-col items-center justify-around bg-gray-200 text-gray-900 px-10" ]
       [ div [] 
         [ h1 [ class "text-3xl" ] [ text "Andrew Thompson" ]
-        , h2 [ class "text-xl" ] [ text "PhD student @ Queen Mary University of London" ]
+        , h2 [ class "text-xl mb-4" ] [ text "PhD student @ Queen Mary University of London" ]
+        , p [ class "text-justify" ] [ text <| "This is some more information about me. It should "
+          ++ "span multiple lines so I can see how everything will end up being "
+          ++ "arranged." ]
         ]
       , nav [ class "flex flex-col items-center justify-center" ]
-        [ button [ class "my-2" ] [ text "about" ]
-        , button [ class "my-2" ] [ text "education" ]
-        , button [ class "my-2" ] [ text "experience" ]
-        , button [ class "my-2" ] [ text "projects" ]
-        , button [ class "my-2" ] [ text "skills" ]
-        ]
+        <| List.map (navButton model.focusedElement) model.sections
       ]
     , main_ [ class "bg-gray-100" ]
-      [ about
-      , education
-      , experience
-      , projects
-      , skills
-      ]
+        <| List.map Section.view model.sections
     ]
-
+    
 --
-about : Html Msg
-about =
-  div [ class "bg-blue-500" ]
-    [ text "about" ]
-
---
-education : Html Msg
-education =
-  div [ class "bg-orange-500" ]
-    [ text "education" ]
-
---
-experience : Html Msg
-experience =
-  div [ class "bg-green-500" ]
-    [ text "experience" ]
-
---
-projects : Html Msg
-projects =
-  div [ class "bg-indigo-500" ]
-    [ text "projects" ]
-
---
-skills : Html Msg
-skills =
-  div [ class "bg-yellow-500" ]
-    [ text "skills" ]
+navButton : String -> Section -> Html Msg
+navButton focusedSectionId section =
+  let
+    activeColour = "text-" ++ section.bgColour ++ "-600"
+  in
+  button
+    [ class "my-2 font-bold text-lg"
+    , class <| if focusedSectionId == section.id then activeColour else "text-gray-900"
+    , onClick <| ScrollTo section.id
+    ]
+    [ text section.id ]
 
 -- SUBSCRIPTIONS ---------------------------------------------------------------
 --
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  Sub.none
+  Sub.batch
+    [ onFocusChange FocusedElement
+    ]
