@@ -1,3 +1,5 @@
+import '@fortawesome/fontawesome-free/css/all.css'
+
 import { Elm } from './elm/Main.elm'
 import mostInViewport from './js/mostInViewport'
 import scrollIntoView from './js/scrollTo'
