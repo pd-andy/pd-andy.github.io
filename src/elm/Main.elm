@@ -4,7 +4,11 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Section exposing (Section)
+
+import Content.Nav
+import Content.Socials exposing (SocialMedia)
+import Content.Sections exposing (Section)
+
 
 -- PORTS -----------------------------------------------------------------------
 -- 
@@ -14,7 +18,7 @@ port scrollToElement : String -> Cmd msg
 
 -- MAIN ------------------------------------------------------------------------
 --
-main : Program () Model Msg
+main : Program Flags Model Msg
 main =
   Browser.element
     { init = init
@@ -28,30 +32,29 @@ main =
 type alias Model =
   { focusedElement : String
   , sections : List Section
-  , socials : List Social
-  }
-
-type alias Social =
-  { name : String
-  , icon : String
-  , link : String
+  , socials : List SocialMedia
   }
 
 --
-init : flags -> (Model, Cmd Msg)
+type alias Flags =
+  { images :
+    { do : String
+    , flow : String
+    }
+  }
+
+--
+init : Flags -> (Model, Cmd Msg)
 init flags = 
   ( { focusedElement = "about"
     , sections =
-      [ Section.about
-      , Section.education
-      , Section.experience
-      , Section.projects
-      , Section.skills
+      [ Content.Sections.about
+      , Content.Sections.education
+      , Content.Sections.experience
+      , Content.Sections.projects flags.images.do
+      , Content.Sections.skills
       ]
-    , socials =
-      [ { name = "Twitter", icon = "fab fa-twitter-square", link = "https://twitter.com/_pdandy" }
-      , { name = "Email", icon = "fas fa-envelope", link = "mailto:andrew.thompson@qmul.ac.uk" }
-      ]
+    , socials = Content.Socials.all
     }
   , Cmd.none
   )
@@ -81,39 +84,19 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div [ id "app" ]
-    [ aside [ class "flex flex-col items-center justify-around bg-gray-200 text-gray-900 px-10" ]
+    [ aside [ class "flex flex-col items-center justify-around bg-gray-100 text-gray-900 px-10" ]
       [ div [] 
         [ h1 [ class "text-3xl" ] [ text "Andrew Thompson" ]
         , h2 [ class "text-xl mb-4" ] [ text "PhD student @ Queen Mary University of London" ]
         , div [ class "flex justify-around" ]
-            <| List.map socialButton model.socials
+            <| List.map Content.Socials.button model.socials
         ]
-      , nav [ class "flex flex-col items-center justify-center" ]
-        <| List.map (navButton model.focusedElement) model.sections
+      , Content.Nav.list 
+          <| List.map (Content.Nav.item model.focusedElement ScrollTo) model.sections
       ]
-    , main_ [ class "bg-gray-100" ]
-        <| List.map Section.view model.sections
+    , main_ [ class "shadow-xl" ]
+        <| List.map Content.Sections.view model.sections
     ]
-    
---
-socialButton : Social -> Html Msg
-socialButton social =
-  a [ class "flex flex-col", href social.link ]
-    [ i [ class social.icon, class "fa-2x" ] []
-    ]
-
---
-navButton : String -> Section -> Html Msg
-navButton focusedSectionId section =
-  let
-    activeColour = "text-" ++ section.bgColour ++ "-600"
-  in
-  button
-    [ class "my-2 font-bold text-lg"
-    , class <| if focusedSectionId == section.id then activeColour else "text-gray-900"
-    , onClick <| ScrollTo section.id
-    ]
-    [ text section.id ]
 
 -- SUBSCRIPTIONS ---------------------------------------------------------------
 --

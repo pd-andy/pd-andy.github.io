@@ -27,6 +27,7 @@ export default app => e => {
 
   if (focusedSection.id !== lastFocusedSection) {
     app.ports.onFocusChange.send(focusedSection.id)
+    window.history.pushState(null, null, `#${focusedSection.id}`)
   }
 
   lastFocusedSection = focusedSection.id
