@@ -209,14 +209,16 @@ skills =
     , Subheading "Languages"
     , Skill { name = "JavaScript", level = "Comfortable" }
     , Skill { name = "Elm", level = "Comfortable" }
+    , Skill { name = "TypeScript", level = "Familiar" }
+    , Skill { name = "CSS", level = "Familiar" }
     , Skill { name = "Haskell", level = "Familiar" }
-    , Skill { name = "Processing (Java)", level = "Familiar" }
-    , Skill { name = "OpenFrameworks (C++)", level = "Familiar" }
     , Skill { name = "ReasonML", level = "Aware" }
     , Subheading "Frameworks"
-    , Skill { name = "Vue", level = "Comfortable" }
+    , Skill { name = "Vue", level = "Familiar" }
+    , Skill { name = "React", level = "Aware" }
     , Subheading "Misc"
-    , Skill { name = "Web Audio API", level = "Familiar" }
+    , Skill { name = "Web Audio API", level = "Comfortable" }
+    , Skill { name = "Git", level = "Familiar" }
     ]
   }
 
