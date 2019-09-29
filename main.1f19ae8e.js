@@ -5190,9 +5190,7 @@ var author$project$Content$Sections$experience = {
 	content: _List_fromArray(
 		[
 			author$project$Content$Sections$Job(
-			{employer: 'Institute of Coding', title: 'Demonstrator – Introduction to Coding Bootcamp', when: 'September 2019'}),
-			author$project$Content$Sections$Job(
-			{employer: 'Institute of Coding', title: 'Demonstrator – Introduction to Coding Bootcamp', when: 'July 2019'}),
+			{employer: 'Institute of Coding', title: 'Demonstrator – Introduction to Coding Bootcamp', when: 'July 2019, September 2019'}),
 			author$project$Content$Sections$Job(
 			{employer: 'Queen Mary University of London', title: 'Lead Demonstrator – The Semantic Web', when: 'Jan 2019 – May 2019'})
 		]),
@@ -5246,11 +5244,11 @@ var author$project$Content$Sections$projects = function (doImgUrl) {
 				{
 					description: _List_fromArray(
 						[
-							author$project$Content$Sections$Paragraph('Do is your typical, run-of-the-mill, front-end developer ' + ('todo list app. Built as a first proper project using Elm as well as ' + ('an opportunity to test out a utility-first css approach with ' + ('tailwind, do support creating / completing / discarding todos that ' + 'get saved locally using the localStorage API.')))),
+							author$project$Content$Sections$Paragraph('Do is your typical, run-of-the-mill, front-end developer ' + ('todo list app. Built as a first proper project using Elm as well as ' + ('an opportunity to test out a utility-first css approach with ' + ('tailwind, do supports creating / completing / discarding todos that ' + 'get saved locally using the localStorage API.')))),
 							author$project$Content$Sections$Image(doImgUrl)
 						]),
 					github: 'https://github.com/pd-andy/do-app',
-					technology: 'javascript / localstorage / tailwindcss / application',
+					technology: 'elm / localstorage / tailwindcss / application',
 					title: 'do-app'
 				})
 			]),
@@ -5274,15 +5272,15 @@ var author$project$Content$Sections$skills = {
 			author$project$Content$Sections$Paragraph('• Aware = This tech is on my radar, and I might\'ve used it ' + ('a little bit in the past. Maybe it is similar to something else I\'m ' + ('comfortable with or maybe it\'s a totally different mindset shift. I ' + ('haven\'t invested much time into learning this, but I\'d be willing to ' + 'in the future.')))),
 			author$project$Content$Sections$Subheading('Languages'),
 			author$project$Content$Sections$Skill(
-			{level: 'Familiar', name: 'JavaScript'}),
+			{level: 'Comfortable', name: 'JavaScript'}),
 			author$project$Content$Sections$Skill(
-			{level: 'Familiar', name: 'Elm'}),
+			{level: 'Comfortable', name: 'Elm'}),
 			author$project$Content$Sections$Skill(
-			{level: 'Comfortable', name: 'Haskell'}),
+			{level: 'Familiar', name: 'Haskell'}),
 			author$project$Content$Sections$Skill(
-			{level: 'Comfortable', name: 'Processing (Java)'}),
+			{level: 'Familiar', name: 'Processing (Java)'}),
 			author$project$Content$Sections$Skill(
-			{level: 'Comfortable', name: 'OpenFrameworks (C++)'}),
+			{level: 'Familiar', name: 'OpenFrameworks (C++)'}),
 			author$project$Content$Sections$Skill(
 			{level: 'Aware', name: 'ReasonML'}),
 			author$project$Content$Sections$Subheading('Frameworks'),
@@ -11136,7 +11134,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53927" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61379" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
