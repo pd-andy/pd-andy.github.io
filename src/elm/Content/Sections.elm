@@ -177,7 +177,7 @@ projects doImgUrl =
       }
     , Project
       { title = "do-app"
-      , technology = "javascript / localstorage / tailwindcss / application"
+      , technology = "elm / localstorage / tailwindcss / application"
       , description = 
         [ Paragraph <| "Do is your typical, run-of-the-mill, front-end developer "
           ++ "todo list app. Built as a first proper project using Elm as well as "
@@ -212,11 +212,11 @@ skills =
       ++ "haven't invested much time into learning this, but I'd be willing to "
       ++ "in the future."
     , Subheading "Languages"
-    , Skill { name = "JavaScript", level = "Familiar" }
-    , Skill { name = "Elm", level = "Familiar" }
-    , Skill { name = "Haskell", level = "Comfortable" }
-    , Skill { name = "Processing (Java)", level = "Comfortable" }
-    , Skill { name = "OpenFrameworks (C++)", level = "Comfortable" }
+    , Skill { name = "JavaScript", level = "Comfortable" }
+    , Skill { name = "Elm", level = "Comfortable" }
+    , Skill { name = "Haskell", level = "Familiar" }
+    , Skill { name = "Processing (Java)", level = "Familiar" }
+    , Skill { name = "OpenFrameworks (C++)", level = "Familiar" }
     , Skill { name = "ReasonML", level = "Aware" }
     , Subheading "Frameworks"
     , Skill { name = "Vue", level = "Comfortable" }
