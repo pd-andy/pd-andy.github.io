@@ -92,12 +92,7 @@ experience =
     [ Job
       { title = "Demonstrator – Introduction to Coding Bootcamp"
       , employer = "Institute of Coding"
-      , when = "September 2019"
-      }
-    , Job
-      { title = "Demonstrator – Introduction to Coding Bootcamp"
-      , employer = "Institute of Coding"
-      , when = "July 2019"
+      , when = "July 2019, September 2019"
       }
     , Job
       { title = "Lead Demonstrator – The Semantic Web"
