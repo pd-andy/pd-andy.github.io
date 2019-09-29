@@ -182,7 +182,7 @@ projects doImgUrl =
         [ Paragraph <| "Do is your typical, run-of-the-mill, front-end developer "
           ++ "todo list app. Built as a first proper project using Elm as well as "
           ++ "an opportunity to test out a utility-first css approach with "
-          ++ "tailwind, do support creating / completing / discarding todos that "
+          ++ "tailwind, do supports creating / completing / discarding todos that "
           ++ "get saved locally using the localStorage API."
         , Image doImgUrl
         ]
