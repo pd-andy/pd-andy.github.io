@@ -5798,7 +5798,7 @@ var author$project$Content$Nav$item = F3(
 			_List_fromArray(
 				[
 					elm$html$Html$Attributes$class(
-					_Utils_eq(focusedSection, id) ? ('text-' + (colour + '-600')) : 'text-gray-900'),
+					_Utils_eq(focusedSection, id) ? ('text-' + (colour + '-500')) : 'text-gray-900'),
 					elm$html$Html$Attributes$class('font-bold text-lg'),
 					elm$html$Html$Attributes$class('my-2'),
 					elm$html$Html$Events$onClick(
@@ -5942,7 +5942,7 @@ var author$project$Content$Sections$viewSectionContent = function (content) {
 				elm$html$Html$pre,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class('font-mono bg-gray-800 mt-4 p-2 border-l-8 border-gray-900 overflow-y-scroll text-white rounded-r-lg')
+						elm$html$Html$Attributes$class('font-mono bg-gray-800 mt-4 p-2 border-l-8 border-gray-900 overflow-y-scroll text-white rounded-r-lg shadow')
 					]),
 				A2(
 					elm$core$List$map,
@@ -5965,7 +5965,7 @@ var author$project$Content$Sections$viewSectionContent = function (content) {
 				elm$html$Html$div,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class('mt-4')
+						elm$html$Html$Attributes$class('mt-4 shadow')
 					]),
 				_List_fromArray(
 					[
@@ -6175,8 +6175,7 @@ var author$project$Content$Sections$view = function (section) {
 		_List_fromArray(
 			[
 				elm$html$Html$Attributes$id(section.id),
-				elm$html$Html$Attributes$class('bg-' + (section.colour + '-200')),
-				elm$html$Html$Attributes$class('p-8 lg:p-12')
+				elm$html$Html$Attributes$class('bg-' + (section.colour + '-200 p-8 lg:p-12'))
 			]),
 		_List_fromArray(
 			[
@@ -6184,8 +6183,7 @@ var author$project$Content$Sections$view = function (section) {
 				elm$html$Html$h1,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class('lg:text-6xl text-3xl font-semibold'),
-						elm$html$Html$Attributes$class('border-b-4 border-gray-900 mb-4')
+						elm$html$Html$Attributes$class('lg:text-6xl text-3xl font-semibold border-b-4 border-gray-900 mb-4')
 					]),
 				_List_fromArray(
 					[
@@ -6193,7 +6191,10 @@ var author$project$Content$Sections$view = function (section) {
 					])),
 				A2(
 				elm$html$Html$div,
-				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('container')
+					]),
 				A2(elm$core$List$map, author$project$Content$Sections$viewSectionContent, section.content))
 			]));
 };
@@ -11134,7 +11135,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61379" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61984" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
