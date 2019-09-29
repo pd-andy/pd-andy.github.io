@@ -1,0 +1,1 @@
+{"version":3,"sources":["transition.css"],"names":[],"mappings":"AAAA;EACE,yBAAyB;AAC3B","file":"transition.716c873a.css","sourceRoot":"../src","sourcesContent":["* {\n  transition: all 0.2s ease;\n}"]}
