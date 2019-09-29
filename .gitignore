@@ -100,3 +100,6 @@ public
 
 # elm build files
 elm-stuff
+
+# mac files
+.DS_Store
