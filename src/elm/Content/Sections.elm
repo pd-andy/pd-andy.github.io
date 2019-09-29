@@ -223,17 +223,10 @@ skills =
 -- FUNCTIONS -------------------------------------------------------------------
 view : Section -> Html msg
 view section =
-  Html.section
-    [ id section.id
-    , class <| "bg-" ++ section.colour ++ "-200"
-    , class "p-8 lg:p-12"
-    ]
-    [ h1 
-      [ class "lg:text-6xl text-3xl font-semibold"
-      , class "border-b-4 border-gray-900 mb-4"
-      ] 
+  Html.section [ id section.id, class <| "bg-" ++ section.colour ++ "-200 p-8 lg:p-12" ]
+    [ h1 [ class "lg:text-6xl text-3xl font-semibold border-b-4 border-gray-900 mb-4" ] 
       [ text section.heading ]
-    , div []
+    , div [ class "container" ]
       <| List.map viewSectionContent section.content
     ]
 
@@ -248,11 +241,11 @@ viewSectionContent content =
         [ text string ]
 
     Code lines ->
-      pre [ class "font-mono bg-gray-800 mt-4 p-2 border-l-8 border-gray-900 overflow-y-scroll text-white rounded-r-lg" ]
+      pre [ class "font-mono bg-gray-800 mt-4 p-2 border-l-8 border-gray-900 overflow-y-scroll text-white rounded-r-lg shadow" ]
         <| List.map (\line -> code [ class "pl-2" ] [ text <| line ++ "\n" ]) lines
 
     Image url ->
-      div [ class "mt-4" ]
+      div [ class "mt-4 shadow" ]
         [ img [ src url, class "w-full rounded-lg" ] []
         ]
 

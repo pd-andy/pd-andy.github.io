@@ -13,7 +13,7 @@ list children =
 item : String -> (String -> msg) -> { r | id : String, colour : String } -> Html msg
 item focusedSection msg{ id, colour } =
   button
-    [ class <| if focusedSection == id then "text-" ++ colour ++ "-600" else "text-gray-900"
+    [ class <| if focusedSection == id then "text-" ++ colour ++ "-500" else "text-gray-900"
     , class "font-bold text-lg"
     , class "my-2"
     , onClick <| msg id
