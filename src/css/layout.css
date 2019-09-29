@@ -6,17 +6,9 @@
     grid-template-rows: 100vh;
   }
 
-  #app > aside {
-
-  }
-
   #app > main {
     max-height: 100vh;
     overflow: scroll;
-  }
-
-  #app > main > * {
-    /* min-height: 100vh; */
   }
 }
 
@@ -29,13 +21,5 @@
 
   #app > aside {
     height: 100vh;
-  }
-
-  #app > main {
-    
-  }
-
-  #app > main > * {
-    min-height: 100vh;
   }
 }
