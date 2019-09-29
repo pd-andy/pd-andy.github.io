@@ -3,4 +3,7 @@ const github = require('gh-pages')
 github.publish('dist', {
   branch: 'master',
   message: ':tada: Deploy site.'
-}, console.log)
+}, err => err
+  ? console.error(err)
+  : console.log('Site deployed!')
+)
