@@ -1,6 +1,3 @@
-// CSS imports
-import '@fortawesome/fontawesome-free/css/all.min.css'
-
 // Image imports
 import doApp from './img/do-app.png'
 import flowArchitecture from './img/flow-architecture.png'
