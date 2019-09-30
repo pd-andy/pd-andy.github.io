@@ -26,4 +26,22 @@
   }
 }
 
+@media only print {
+  #app {
+    display: flex;
+    flex-direction: column;
+  }
+
+  a,
+  #nav,
+  #socials,
+  [data-description] {
+    display: none
+  }
+
+  section {
+    background-color: white !important;
+  }
+}
+
 /*# sourceMappingURL=/layout.20db2a50.css.map */

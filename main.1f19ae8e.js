@@ -184,7 +184,7 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/@fortawesome/fontawesome-free/css/all.css":[function(require,module,exports) {
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/@fortawesome/fontawesome-free/css/all.min.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -5190,9 +5190,9 @@ var author$project$Content$Sections$experience = {
 	content: _List_fromArray(
 		[
 			author$project$Content$Sections$Job(
-			{employer: 'Institute of Coding', title: 'Demonstrator – Introduction to Coding Bootcamp', when: 'July 2019, September 2019'}),
+			{description: _List_Nil, employer: 'Institute of Coding', title: 'Demonstrator – Introduction to Coding Bootcamp', when: 'July 2019, September 2019'}),
 			author$project$Content$Sections$Job(
-			{employer: 'Queen Mary University of London', title: 'Lead Demonstrator – The Semantic Web', when: 'Jan 2019 – May 2019'})
+			{description: _List_Nil, employer: 'Queen Mary University of London', title: 'Lead Demonstrator – The Semantic Web', when: 'Jan 2019 – May 2019'})
 		]),
 	heading: 'Experience',
 	id: 'experience'
@@ -5215,7 +5215,7 @@ var author$project$Content$Sections$projects = function (doImgUrl) {
 				{
 					description: _List_fromArray(
 						[
-							author$project$Content$Sections$Paragraph('Flow is a complete framework for creating interactive ' + ('audio applications using the Web Audio API. It\'s main selling ' + ('points are the highly declarative API for creating audio processing ' + ('graphs and the implementation of the Model-View-Update (MVU) ' + ('architecture for audio applications. MVU is an Elm-inspired ' + ('architecture that places heavy focus on deterministic updates to ' + ('application state and a strict separation of each layer of that ' + ('application. View elements do not manipulate audio elements directly ' + ('for example, instead specific Actions are dispatched to the runtime ' + ('triggering a new application Model to be generated and thus a new ' + 'view and audio graph.'))))))))))
+							author$project$Content$Sections$Paragraph('Flow is a complete framework for creating interactive ' + ('audio applications using the Web Audio API. Its main selling ' + ('points are the highly declarative API for creating audio processing ' + ('graphs and the implementation of the Model-View-Update (MVU) ' + ('architecture for audio applications. MVU is an Elm-inspired ' + ('architecture that places heavy focus on deterministic updates to ' + ('application state and a strict separation of each layer of that ' + ('application. View elements do not manipulate audio elements directly ' + ('for example. Instead, specific Actions are dispatched to the runtime, ' + ('triggering a new application Model to be generated and thus a new ' + 'view and audio graph.'))))))))))
 						]),
 					github: 'https://github.com/flow-lang/flow-framework',
 					technology: 'javascript / web audio / framework',
@@ -5276,19 +5276,23 @@ var author$project$Content$Sections$skills = {
 			author$project$Content$Sections$Skill(
 			{level: 'Comfortable', name: 'Elm'}),
 			author$project$Content$Sections$Skill(
+			{level: 'Familiar', name: 'TypeScript'}),
+			author$project$Content$Sections$Skill(
+			{level: 'Familiar', name: 'CSS'}),
+			author$project$Content$Sections$Skill(
 			{level: 'Familiar', name: 'Haskell'}),
-			author$project$Content$Sections$Skill(
-			{level: 'Familiar', name: 'Processing (Java)'}),
-			author$project$Content$Sections$Skill(
-			{level: 'Familiar', name: 'OpenFrameworks (C++)'}),
 			author$project$Content$Sections$Skill(
 			{level: 'Aware', name: 'ReasonML'}),
 			author$project$Content$Sections$Subheading('Frameworks'),
 			author$project$Content$Sections$Skill(
-			{level: 'Comfortable', name: 'Vue'}),
+			{level: 'Familiar', name: 'Vue'}),
+			author$project$Content$Sections$Skill(
+			{level: 'Aware', name: 'React'}),
 			author$project$Content$Sections$Subheading('Misc'),
 			author$project$Content$Sections$Skill(
-			{level: 'Familiar', name: 'Web Audio API'})
+			{level: 'Comfortable', name: 'Web Audio API'}),
+			author$project$Content$Sections$Skill(
+			{level: 'Familiar', name: 'Git'})
 		]),
 	heading: 'Skills',
 	id: 'skills'
@@ -5302,6 +5306,7 @@ var author$project$Content$Socials$all = _List_fromArray(
 		A3(author$project$Content$Socials$SocialMedia, 'Email', 'fas fa-envelope', 'mailto:andrew.thompson@qmul.ac.uk'),
 		A3(author$project$Content$Socials$SocialMedia, 'Twitter', 'fab fa-twitter-square', 'https://twitter.com/_pdandy'),
 		A3(author$project$Content$Socials$SocialMedia, 'Telegram', 'fab fa-telegram', 'https://t.me/pd_andy'),
+		A3(author$project$Content$Socials$SocialMedia, 'LinkedIn', 'fab fa-linkedin-in', 'https://www.linkedin.com/in/andrew-thompson-3a6939124/'),
 		A3(author$project$Content$Socials$SocialMedia, 'GitHub', 'fab fa-github-square', 'https://github.com/pd-andy')
 	]);
 var elm$core$Basics$False = {$: 'False'};
@@ -5810,11 +5815,13 @@ var author$project$Content$Nav$item = F3(
 				]));
 	});
 var elm$html$Html$nav = _VirtualDom_node('nav');
+var elm$html$Html$Attributes$id = elm$html$Html$Attributes$stringProperty('id');
 var author$project$Content$Nav$list = function (children) {
 	return A2(
 		elm$html$Html$nav,
 		_List_fromArray(
 			[
+				elm$html$Html$Attributes$id('nav'),
 				elm$html$Html$Attributes$class('flex flex-col items-center justify-center')
 			]),
 		children);
@@ -5898,6 +5905,14 @@ var elm$html$Html$img = _VirtualDom_node('img');
 var elm$html$Html$p = _VirtualDom_node('p');
 var elm$html$Html$pre = _VirtualDom_node('pre');
 var elm$html$Html$span = _VirtualDom_node('span');
+var elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var elm$html$Html$Attributes$attribute = elm$virtual_dom$VirtualDom$attribute;
 var elm$html$Html$Attributes$href = function (url) {
 	return A2(
 		elm$html$Html$Attributes$stringProperty,
@@ -6101,7 +6116,8 @@ var author$project$Content$Sections$viewSectionContent = function (content) {
 						elm$html$Html$div,
 						_List_fromArray(
 							[
-								elm$html$Html$Attributes$class('mb-2')
+								elm$html$Html$Attributes$class('mb-2'),
+								A2(elm$html$Html$Attributes$attribute, 'data-description', '')
 							]),
 						A2(elm$core$List$map, author$project$Content$Sections$viewSectionContent, description)),
 						A2(
@@ -6168,14 +6184,13 @@ var author$project$Content$Sections$viewSectionContent = function (content) {
 };
 var elm$html$Html$h1 = _VirtualDom_node('h1');
 var elm$html$Html$section = _VirtualDom_node('section');
-var elm$html$Html$Attributes$id = elm$html$Html$Attributes$stringProperty('id');
 var author$project$Content$Sections$view = function (section) {
 	return A2(
 		elm$html$Html$section,
 		_List_fromArray(
 			[
 				elm$html$Html$Attributes$id(section.id),
-				elm$html$Html$Attributes$class('bg-' + (section.colour + '-200 p-8 lg:p-12'))
+				elm$html$Html$Attributes$class('bg-' + (section.colour + '-100 p-8 lg:p-12'))
 			]),
 		_List_fromArray(
 			[
@@ -6183,7 +6198,7 @@ var author$project$Content$Sections$view = function (section) {
 				elm$html$Html$h1,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class('lg:text-6xl text-3xl font-semibold border-b-4 border-gray-900 mb-4')
+						elm$html$Html$Attributes$class('lg:text-6xl text-2xl font-semibold border-b-4 border-gray-900 mb-4')
 					]),
 				_List_fromArray(
 					[
@@ -6227,6 +6242,16 @@ var author$project$Content$Socials$button = function (social) {
 						elm$html$Html$text(social.name)
 					]))
 			]));
+};
+var author$project$Content$Socials$list = function (socials) {
+	return A2(
+		elm$html$Html$div,
+		_List_fromArray(
+			[
+				elm$html$Html$Attributes$id('socials'),
+				elm$html$Html$Attributes$class('flex justify-around')
+			]),
+		A2(elm$core$List$map, author$project$Content$Socials$button, socials));
 };
 var author$project$Main$ScrollTo = function (a) {
 	return {$: 'ScrollTo', a: a};
@@ -6275,13 +6300,7 @@ var author$project$Main$view = function (model) {
 									[
 										elm$html$Html$text('PhD student @ Queen Mary University of London')
 									])),
-								A2(
-								elm$html$Html$div,
-								_List_fromArray(
-									[
-										elm$html$Html$Attributes$class('flex justify-around')
-									]),
-								A2(elm$core$List$map, author$project$Content$Socials$button, model.socials))
+								author$project$Content$Socials$list(model.socials)
 							])),
 						author$project$Content$Nav$list(
 						A2(
@@ -11036,7 +11055,7 @@ var _default = function _default(app) {
       return {
         y: Math.abs(bounding.y),
         id: section.id,
-        inViewport: bounding.y < window.innerHeight && bounding.y > -window.innerHeight
+        inViewport: bounding.y < window.innerHeight && bounding.y > -window.innerHeight - bounding.height
       };
     }) // Filter out all the elements that aren't currently visible in the viewport.
     .filter(function (section) {
@@ -11078,7 +11097,7 @@ exports.default = _default;
 },{}],"main.js":[function(require,module,exports) {
 "use strict";
 
-require("@fortawesome/fontawesome-free/css/all.css");
+require("@fortawesome/fontawesome-free/css/all.min.css");
 
 var _doApp = _interopRequireDefault(require("./img/do-app.png"));
 
@@ -11096,7 +11115,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Image imports
 //
 var app = _Main.Elm.Main.init({
-  node: document.querySelector('body'),
+  node: document.querySelector('#elm-container'),
   flags: {
     images: {
       do: _doApp.default,
@@ -11106,8 +11125,10 @@ var app = _Main.Elm.Main.init({
 });
 
 app.ports.scrollToElement.subscribe(_scrollTo.default);
-document.querySelector('main').addEventListener('scroll', (0, _mostInViewport.default)(app));
-},{"@fortawesome/fontawesome-free/css/all.css":"../node_modules/@fortawesome/fontawesome-free/css/all.css","./img/do-app.png":"img/do-app.png","./img/flow-architecture.png":"img/flow-architecture.png","./elm/Main.elm":"elm/Main.elm","./js/mostInViewport":"js/mostInViewport.js","./js/scrollTo":"js/scrollTo.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+window.requestAnimationFrame(function () {
+  document.querySelector('main').addEventListener('scroll', (0, _mostInViewport.default)(app));
+});
+},{"@fortawesome/fontawesome-free/css/all.min.css":"../node_modules/@fortawesome/fontawesome-free/css/all.min.css","./img/do-app.png":"img/do-app.png","./img/flow-architecture.png":"img/flow-architecture.png","./elm/Main.elm":"elm/Main.elm","./js/mostInViewport":"js/mostInViewport.js","./js/scrollTo":"js/scrollTo.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -11135,7 +11156,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61984" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54899" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
