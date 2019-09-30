@@ -14,7 +14,7 @@ export default app => e => {
       return {
         y: Math.abs(bounding.y),
         id: section.id,
-        inViewport: bounding.y < window.innerHeight && bounding.y > -window.innerHeight
+        inViewport: bounding.y < window.innerHeight && bounding.y > -window.innerHeight - bounding.height
       }
     })
     // Filter out all the elements that aren't currently visible in the viewport.

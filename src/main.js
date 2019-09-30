@@ -1,5 +1,5 @@
 // CSS imports
-import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 // Image imports
 import doApp from './img/do-app.png'
@@ -11,7 +11,7 @@ import scrollIntoView from './js/scrollTo'
 
 //
 const app = Elm.Main.init({
-  node: document.querySelector('body'),
+  node: document.querySelector('#elm-container'),
   flags: {
     images: {
       do: doApp,
@@ -23,5 +23,7 @@ const app = Elm.Main.init({
 app.ports.scrollToElement
   .subscribe(scrollIntoView)
 
-document.querySelector('main')
-  .addEventListener('scroll', mostInViewport(app))
+window.requestAnimationFrame(() => {
+  document.querySelector('main')
+    .addEventListener('scroll', mostInViewport(app))
+})

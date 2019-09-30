@@ -18,10 +18,16 @@ all =
   [ SocialMedia "Email" "fas fa-envelope" "mailto:andrew.thompson@qmul.ac.uk"
   , SocialMedia "Twitter" "fab fa-twitter-square" "https://twitter.com/_pdandy"
   , SocialMedia "Telegram" "fab fa-telegram" "https://t.me/pd_andy"
+  , SocialMedia "LinkedIn" "fab fa-linkedin-in" "https://www.linkedin.com/in/andrew-thompson-3a6939124/"
   , SocialMedia "GitHub" "fab fa-github-square" "https://github.com/pd-andy"
   ]
 
 -- FUNCTIONS -------------------------------------------------------------------
+list : List SocialMedia -> Html msg
+list socials =
+  div [ id "socials", class "flex justify-around" ]
+    <| List.map button socials
+
 button : SocialMedia -> Html msg
 button social =
   a [ class "flex flex-col items-center my-6", href social.link ]

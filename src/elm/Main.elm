@@ -88,8 +88,7 @@ view model =
       [ div [] 
         [ h1 [ class "text-3xl" ] [ text "Andrew Thompson" ]
         , h2 [ class "text-xl mb-4" ] [ text "PhD student @ Queen Mary University of London" ]
-        , div [ class "flex justify-around" ]
-            <| List.map Content.Socials.button model.socials
+        , Content.Socials.list model.socials
         ]
       , Content.Nav.list 
           <| List.map (Content.Nav.item model.focusedElement ScrollTo) model.sections

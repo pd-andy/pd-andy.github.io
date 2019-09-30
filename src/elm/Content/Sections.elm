@@ -27,6 +27,7 @@ type Content
     { title : String
     , employer : String
     , when : String
+    , description : List Content
     }
   | Project
     { title : String
@@ -93,11 +94,17 @@ experience =
       { title = "Demonstrator – Introduction to Coding Bootcamp"
       , employer = "Institute of Coding"
       , when = "July 2019, September 2019"
+      , description =
+        [
+        ]
       }
     , Job
       { title = "Lead Demonstrator – The Semantic Web"
       , employer = "Queen Mary University of London"
       , when = "Jan 2019 – May 2019"
+      , description = 
+        [
+        ]
       }
     ]
   }
@@ -113,14 +120,14 @@ projects doImgUrl =
       , technology = "javascript / web audio / framework"
       , description = 
         [ Paragraph <| "Flow is a complete framework for creating interactive "
-          ++ "audio applications using the Web Audio API. It's main selling "
+          ++ "audio applications using the Web Audio API. Its main selling "
           ++ "points are the highly declarative API for creating audio processing "
           ++ "graphs and the implementation of the Model-View-Update (MVU) "
           ++ "architecture for audio applications. MVU is an Elm-inspired "
           ++ "architecture that places heavy focus on deterministic updates to "
           ++ "application state and a strict separation of each layer of that "
           ++ "application. View elements do not manipulate audio elements directly "
-          ++ "for example, instead specific Actions are dispatched to the runtime "
+          ++ "for example. Instead, specific Actions are dispatched to the runtime, "
           ++ "triggering a new application Model to be generated and thus a new "
           ++ "view and audio graph." 
         ]
@@ -225,8 +232,8 @@ skills =
 -- FUNCTIONS -------------------------------------------------------------------
 view : Section -> Html msg
 view section =
-  Html.section [ id section.id, class <| "bg-" ++ section.colour ++ "-200 p-8 lg:p-12" ]
-    [ h1 [ class "lg:text-6xl text-3xl font-semibold border-b-4 border-gray-900 mb-4" ] 
+  Html.section [ id section.id, class <| "bg-" ++ section.colour ++ "-100 p-8 lg:p-12" ]
+    [ h1 [ class "lg:text-6xl text-2xl font-semibold border-b-4 border-gray-900 mb-4" ] 
       [ text section.heading ]
     , div [ class "container" ]
       <| List.map viewSectionContent section.content
@@ -269,7 +276,7 @@ viewSectionContent content =
       div [ class "pt-6" ]
         [ h2 [ class "text-2xl font-bold" ] [ text title ]
         , h3 [ class "text-md italic border-b-2 border-gray-900 inline-block pb-1" ] [ text technology ]
-        , div [ class "mb-2" ]
+        , div [ class "mb-2", attribute "data-description" "" ]
           <| List.map viewSectionContent description
         , a [ class "text-md", href github ] 
           [ i [ class "fab fa-github-square mr-2" ] []
