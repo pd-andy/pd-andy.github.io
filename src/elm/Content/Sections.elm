@@ -109,8 +109,8 @@ experience =
     ]
   }
 
-projects : String -> Section
-projects doImgUrl =
+projects :  Section
+projects =
   { id = "projects"
   , colour = "purple"
   , heading = "Projects"
@@ -119,17 +119,10 @@ projects doImgUrl =
       { title = "Flow"
       , technology = "javascript / web audio / framework"
       , description = 
-        [ Paragraph <| "Flow is a complete framework for creating interactive "
-          ++ "audio applications using the Web Audio API. Its main selling "
-          ++ "points are the highly declarative API for creating audio processing "
-          ++ "graphs and the implementation of the Model-View-Update (MVU) "
-          ++ "architecture for audio applications. MVU is an Elm-inspired "
-          ++ "architecture that places heavy focus on deterministic updates to "
-          ++ "application state and a strict separation of each layer of that "
-          ++ "application. View elements do not manipulate audio elements directly "
-          ++ "for example. Instead, specific Actions are dispatched to the runtime, "
-          ++ "triggering a new application Model to be generated and thus a new "
-          ++ "view and audio graph." 
+        [ Paragraph <| "Flow is a complete framework for building complex Web "
+          ++ "Audio applications with javascript. It's built on an elm-like "
+          ++ "Model-View-Update architecture and couples strict separation of "
+          ++ "concerns with a concise declarative API for Web Audio programming."
         ]
       , github = "https://github.com/flow-lang/flow-framework"
       }
@@ -138,42 +131,8 @@ projects doImgUrl =
       , technology = "elm / web audio / library"
       , description = 
         [ Paragraph <| "Programming with the vanilla Web Audio API is a largely "
-          ++ "imperative, and object-oriented, affair. Audio nodes are created "
-          ++ "and stored in variables, and properties and methods are accessed "
-          ++ "and invoked on the nodes themselves. Elm-web-audio is new declarative "
-          ++ "API for Web Audio programming specifically in Elm."
-        , Paragraph <| "The below snippet shows how to create a simple audio "
-          ++ "graph with the vanilla API. We create an oscillator and a gain "
-          ++ "node, set some parameters, and then connect them all together. "
-        , Code
-          [ "const osc = context.createOscillator()"
-          , "const amp = context.createGain()"
-          , ""
-          , "osc.frequency.value = 440"
-          , "amp.gain.value = 0.5"
-          , ""
-          , "osc.connect(amp)"
-          , "amp.connect(context.destination)"
-          , ""
-          , "osc.start()"
-          ]
-        , Paragraph <| "There's a lot of bookkeeping involved here, we have to "
-          ++ "store each node in a variable and then access that node to set some "
-          ++ "parameters. This quickly gets out of hand with larger audio graphs. "
-          ++ "Below is the elm-web-audio alternative. The library provides an API "
-          ++ "similar to Elm's own html library that leads to a highly declarative "
-          ++ "and very visual way of describing Web Audio graphs."
-        , Code
-          [ "N.oscillator [ P.frequency 440 ]"
-          , "  [ N.gain [ P.gain 0.5 ]"
-          , "    [ N.dac ]"
-          , "  ]"
-          ]
-        , Paragraph <| "This let's us focus on what the audio graph should be "
-          ++ "instead of how to create it. As Elm cannot call javascript code "
-          ++ "directly (pesky purity), a companion example implementation for a "
-          ++ "virtual audio graph is provded in the repository. The graph just "
-          ++ "needs to be sent via a port to javascript land to be constructed."
+          ++ "imperative, and object-oriented, affair. Elm-web-audio is an "
+          ++ "alternative, declarative, API for Web Audio programming in Elm."
         ]
       , github = "https://github.com/pd-andy/elm-web-audio"
       }
@@ -186,7 +145,6 @@ projects doImgUrl =
           ++ "an opportunity to test out a utility-first css approach with "
           ++ "tailwind, do supports creating / completing / discarding todos that "
           ++ "get saved locally using the localStorage API."
-        , Image doImgUrl
         ]
       , github = "https://github.com/pd-andy/do-app"
       }
@@ -202,17 +160,6 @@ skills =
     [ Paragraph <| "Here you'll find a memory dump of the various technologies "
       ++ "I've learned and used up until now. These things are usually rated on "
       ++ "a fairly arbitrary scale, so here's my best attempt at keeping it real:"
-    , Paragraph <| "• Comfortable = I've used this tech for quite a while now. I'm "
-      ++ "aware of best practices and some the quirks and I'd be comfortable being "
-      ++ "thrown into the deep end using this."
-    , Paragraph <| "• Familiar = I've used this tech a little bit. With some "
-      ++ "guidance I could create some cool things, but I'll probably make some "
-      ++ "mistakes on the way."
-    , Paragraph <| "• Aware = This tech is on my radar, and I might've used it "
-      ++ "a little bit in the past. Maybe it is similar to something else I'm "
-      ++ "comfortable with or maybe it's a totally different mindset shift. I "
-      ++ "haven't invested much time into learning this, but I'd be willing to "
-      ++ "in the future."
     , Subheading "Languages"
     , Skill { name = "JavaScript", level = "Comfortable" }
     , Skill { name = "Elm", level = "Comfortable" }
@@ -226,6 +173,18 @@ skills =
     , Subheading "Misc"
     , Skill { name = "Web Audio API", level = "Comfortable" }
     , Skill { name = "Git", level = "Familiar" }
+    , Subheading "Key"
+    , Paragraph <| "• Comfortable = I've used this tech for quite a while now. I'm "
+      ++ "aware of best practices and some the quirks and I'd be comfortable being "
+      ++ "thrown into the deep end using this."
+    , Paragraph <| "• Familiar = I've used this tech a little bit. With some "
+      ++ "guidance I could create some cool things, but I'll probably make some "
+      ++ "mistakes on the way."
+    , Paragraph <| "• Aware = This tech is on my radar, and I might've used it "
+      ++ "a little bit in the past. Maybe it is similar to something else I'm "
+      ++ "comfortable with or maybe it's a totally different mindset shift. I "
+      ++ "haven't invested much time into learning this, but I'd be willing to "
+      ++ "in the future."
     ]
   }
 
@@ -233,7 +192,7 @@ skills =
 view : Section -> Html msg
 view section =
   Html.section [ id section.id, class <| "bg-" ++ section.colour ++ "-100 p-8 lg:p-12" ]
-    [ h1 [ class "lg:text-6xl text-2xl font-semibold border-b-4 border-gray-900 mb-4" ] 
+    [ h1 [ class "lg:text-6xl text-4xl font-semibold border-b-4 border-gray-900 mb-4" ] 
       [ text section.heading ]
     , div [ class "container" ]
       <| List.map viewSectionContent section.content

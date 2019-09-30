@@ -18,7 +18,7 @@ port scrollToElement : String -> Cmd msg
 
 -- MAIN ------------------------------------------------------------------------
 --
-main : Program Flags Model Msg
+main : Program () Model Msg
 main =
   Browser.element
     { init = init
@@ -36,22 +36,14 @@ type alias Model =
   }
 
 --
-type alias Flags =
-  { images :
-    { do : String
-    , flow : String
-    }
-  }
-
---
-init : Flags -> (Model, Cmd Msg)
+init : () -> (Model, Cmd Msg)
 init flags = 
   ( { focusedElement = "about"
     , sections =
       [ Content.Sections.about
       , Content.Sections.education
       , Content.Sections.experience
-      , Content.Sections.projects flags.images.do
+      , Content.Sections.projects
       , Content.Sections.skills
       ]
     , socials = Content.Socials.all
