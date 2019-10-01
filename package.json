@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/index.html",
-    "deploy": "parcel build src/index.html && node deploy"
+    "deploy": "parcel build src/index.html --no-source-maps --no-content-hash && node deploy"
   },
   "author": "",
   "license": "MIT",
