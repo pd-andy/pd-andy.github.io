@@ -76,7 +76,7 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div [ id "app" ]
-    [ aside [ class "flex flex-col items-center justify-around bg-gray-100 text-gray-900 px-10" ]
+    [ aside [ class "flex flex-col items-center justify-around bg-white text-gray-900 px-10" ]
       [ div [] 
         [ h1 [ class "text-3xl" ] [ text "Andrew Thompson" ]
         , h2 [ class "text-xl mb-4" ] [ text "PhD student @ Queen Mary University of London" ]

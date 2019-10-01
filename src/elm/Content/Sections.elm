@@ -1,6 +1,7 @@
 module Content.Sections exposing (..)
 
 -- IMPORTS ---------------------------------------------------------------------
+import Colour exposing (Colour(..))
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -8,7 +9,7 @@ import Html.Events exposing (..)
 -- TYPES -----------------------------------------------------------------------
 type alias Section =
   { id : String
-  , colour : String
+  , colour : Colour
   , heading : String
   , content : List Content
   }
@@ -17,7 +18,6 @@ type Content
   = Paragraph String
   | Subheading String
   | Code (List String)
-  | Image String
   | University
     { degree : String
     , university : String
@@ -44,7 +44,7 @@ type Content
 about : Section
 about =
   { id = "about"
-  , colour = "teal"
+  , colour = Teal
   , heading = "About"
   , content =
     [ Paragraph <| "I'm a PhD student on the Media and Arts Technology programme "
@@ -56,14 +56,14 @@ about =
       ++ "aren't you using Elm yet?)"
     , Paragraph <| "I'm currently looking for front-end work in London. If you'd "
       ++ "like to learn a little more about me then keep scrolling or you can "
-      ++ "contact me using the links to the left."
+      ++ "reach out to me via email, linkedin, or social media."
     ]
   }
 
 education : Section
 education =
   { id = "education"
-  , colour = "blue"
+  , colour = Blue
   , heading = "Education"
   , content =
     [ University
@@ -87,7 +87,7 @@ education =
 experience : Section
 experience =
   { id = "experience"
-  , colour = "indigo"
+  , colour = Indigo
   , heading = "Experience"
   , content =
     [ Job
@@ -112,7 +112,7 @@ experience =
 projects :  Section
 projects =
   { id = "projects"
-  , colour = "purple"
+  , colour = Purple
   , heading = "Projects"
   , content =
     [ Project
@@ -154,7 +154,7 @@ projects =
 skills : Section
 skills =
   { id = "skills"
-  , colour = "pink"
+  , colour = Pink
   , heading = "Skills"
   , content =
     [ Paragraph <| "Here you'll find a memory dump of the various technologies "
@@ -173,25 +173,17 @@ skills =
     , Subheading "Misc"
     , Skill { name = "Web Audio API", level = "Comfortable" }
     , Skill { name = "Git", level = "Familiar" }
-    , Subheading "Key"
-    , Paragraph <| "• Comfortable = I've used this tech for quite a while now. I'm "
-      ++ "aware of best practices and some the quirks and I'd be comfortable being "
-      ++ "thrown into the deep end using this."
-    , Paragraph <| "• Familiar = I've used this tech a little bit. With some "
-      ++ "guidance I could create some cool things, but I'll probably make some "
-      ++ "mistakes on the way."
-    , Paragraph <| "• Aware = This tech is on my radar, and I might've used it "
-      ++ "a little bit in the past. Maybe it is similar to something else I'm "
-      ++ "comfortable with or maybe it's a totally different mindset shift. I "
-      ++ "haven't invested much time into learning this, but I'd be willing to "
-      ++ "in the future."
     ]
   }
 
 -- FUNCTIONS -------------------------------------------------------------------
 view : Section -> Html msg
 view section =
-  Html.section [ id section.id, class <| "bg-" ++ section.colour ++ "-100 p-8 lg:p-12" ]
+  Html.section 
+    [ id section.id
+    , class <| Colour.toBackground section.colour
+    , class "p-8 lg:p-12"
+    ]
     [ h1 [ class "lg:text-6xl text-4xl font-semibold border-b-4 border-gray-900 mb-4" ] 
       [ text section.heading ]
     , div [ class "container" ]
@@ -202,7 +194,7 @@ viewSectionContent : Content -> Html msg
 viewSectionContent content =
   case content of
     Paragraph string ->
-      p [ class "mt-4 text-lg text-justify" ][ text string ]
+      p [ class "mt-4 text-lg text-justify" ] [ text string ]
 
     Subheading string ->
       h2 [ class "mt-4 text-2xl font-bold border-b-2 border-gray-900 mb-4" ]
@@ -211,11 +203,6 @@ viewSectionContent content =
     Code lines ->
       pre [ class "font-mono bg-gray-800 mt-4 p-2 border-l-8 border-gray-900 overflow-y-scroll text-white rounded-r-lg shadow" ]
         <| List.map (\line -> code [ class "pl-2" ] [ text <| line ++ "\n" ]) lines
-
-    Image url ->
-      div [ class "mt-4 shadow" ]
-        [ img [ src url, class "w-full rounded-lg" ] []
-        ]
 
     University { degree, university, when } ->
       div [ class "pt-6" ]
