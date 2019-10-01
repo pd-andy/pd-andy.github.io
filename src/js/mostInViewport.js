@@ -3,7 +3,7 @@
 // data every time we scroll.
 let lastFocusedSection = ''
 
-export default app => e => {
+export default e => {
   // Get all of this element's children and work out which ones are currently
   // visible in the viewport.
   const sections = Array.from(e.target.children)
@@ -26,9 +26,10 @@ export default app => e => {
   const focusedSection = sections.shift()
 
   if (focusedSection.id !== lastFocusedSection) {
-    app.ports.onFocusChange.send(focusedSection.id)
-    window.history.pushState(null, null, `#${focusedSection.id}`)
+    lastFocusedSection = focusedSection.id
+    return focusedSection.id
+  } else {
+    lastFocusedSection = focusedSection.id
+    return null
   }
-
-  lastFocusedSection = focusedSection.id
 }
