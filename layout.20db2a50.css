@@ -3,7 +3,7 @@
 @media only screen and (min-width: 601px) {
   #app {
     display: grid;
-    grid-template-columns: 35vw 1fr;
+    grid-template-columns: 30vw 1fr;
     grid-template-rows: 100vh;
   }
 
@@ -26,22 +26,5 @@
   }
 }
 
-@media only print {
-  #app {
-    display: flex;
-    flex-direction: column;
-  }
-
-  a,
-  #nav,
-  #socials,
-  [data-description] {
-    display: none
-  }
-
-  section {
-    background-color: white !important;
-  }
-}
 
 /*# sourceMappingURL=/layout.20db2a50.css.map */

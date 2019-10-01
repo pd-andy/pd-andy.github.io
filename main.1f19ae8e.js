@@ -117,83 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/@fortawesome/fontawesome-free/css/all.min.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./../webfonts/fa-brands-400.eot":[["fa-brands-400.7b5acd02.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"./../webfonts/fa-brands-400.woff2":[["fa-brands-400.34cc846b.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"./../webfonts/fa-brands-400.woff":[["fa-brands-400.75159956.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"./../webfonts/fa-brands-400.ttf":[["fa-brands-400.f885063e.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"./../webfonts/fa-brands-400.svg":[["fa-brands-400.1f0eb095.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"./../webfonts/fa-regular-400.eot":[["fa-regular-400.d4b9b17f.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"./../webfonts/fa-regular-400.woff2":[["fa-regular-400.82c42f2f.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"./../webfonts/fa-regular-400.woff":[["fa-regular-400.adc5c7aa.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"./../webfonts/fa-regular-400.ttf":[["fa-regular-400.b073eab5.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"./../webfonts/fa-regular-400.svg":[["fa-regular-400.16d6ac71.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"./../webfonts/fa-solid-900.eot":[["fa-solid-900.0b60ff24.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"./../webfonts/fa-solid-900.woff2":[["fa-solid-900.55d5ef42.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"./../webfonts/fa-solid-900.woff":[["fa-solid-900.f824330b.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"./../webfonts/fa-solid-900.ttf":[["fa-solid-900.47a039f3.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"./../webfonts/fa-solid-900.svg":[["fa-solid-900.d08d5f59.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"img/do-app.png":[function(require,module,exports) {
-module.exports = "/do-app.53584724.png";
-},{}],"img/flow-architecture.png":[function(require,module,exports) {
-module.exports = "/flow-architecture.b2faea8f.png";
-},{}],"elm/Main.elm":[function(require,module,exports) {
+})({"elm/Main.elm":[function(require,module,exports) {
 (function(scope){
 'use strict';
 
@@ -5160,7 +5084,7 @@ var author$project$Content$Sections$about = {
 		[
 			author$project$Content$Sections$Paragraph('I\'m a PhD student on the Media and Arts Technology programme ' + ('at Queen Mary University of London. My research is in the field of music ' + ('computing, particularly looking at how programming languages are designed ' + 'for musicians and audio programmers.'))),
 			author$project$Content$Sections$Paragraph('Outside of my research, I have a keen interest in front-end ' + ('web development and functional programming – and mixing the two (why ' + 'aren\'t you using Elm yet?)')),
-			author$project$Content$Sections$Paragraph('I\'m currently looking for front-end work in London. If you\'d ' + ('like to learn a little more about me then keep scrolling or you can ' + 'contact me using the links to the left.'))
+			author$project$Content$Sections$Paragraph('I\'m currently looking for front-end work in London. If you\'d ' + ('like to learn a little more about me then keep scrolling or you can ' + 'reach out to me via email, linkedin, or social media.'))
 		]),
 	heading: 'About',
 	id: 'about'
@@ -5197,64 +5121,46 @@ var author$project$Content$Sections$experience = {
 	heading: 'Experience',
 	id: 'experience'
 };
-var author$project$Content$Sections$Code = function (a) {
-	return {$: 'Code', a: a};
-};
-var author$project$Content$Sections$Image = function (a) {
-	return {$: 'Image', a: a};
-};
 var author$project$Content$Sections$Project = function (a) {
 	return {$: 'Project', a: a};
 };
-var author$project$Content$Sections$projects = function (doImgUrl) {
-	return {
-		colour: 'purple',
-		content: _List_fromArray(
-			[
-				author$project$Content$Sections$Project(
-				{
-					description: _List_fromArray(
-						[
-							author$project$Content$Sections$Paragraph('Flow is a complete framework for creating interactive ' + ('audio applications using the Web Audio API. Its main selling ' + ('points are the highly declarative API for creating audio processing ' + ('graphs and the implementation of the Model-View-Update (MVU) ' + ('architecture for audio applications. MVU is an Elm-inspired ' + ('architecture that places heavy focus on deterministic updates to ' + ('application state and a strict separation of each layer of that ' + ('application. View elements do not manipulate audio elements directly ' + ('for example. Instead, specific Actions are dispatched to the runtime, ' + ('triggering a new application Model to be generated and thus a new ' + 'view and audio graph.'))))))))))
-						]),
-					github: 'https://github.com/flow-lang/flow-framework',
-					technology: 'javascript / web audio / framework',
-					title: 'Flow'
-				}),
-				author$project$Content$Sections$Project(
-				{
-					description: _List_fromArray(
-						[
-							author$project$Content$Sections$Paragraph('Programming with the vanilla Web Audio API is a largely ' + ('imperative, and object-oriented, affair. Audio nodes are created ' + ('and stored in variables, and properties and methods are accessed ' + ('and invoked on the nodes themselves. Elm-web-audio is new declarative ' + 'API for Web Audio programming specifically in Elm.')))),
-							author$project$Content$Sections$Paragraph('The below snippet shows how to create a simple audio ' + ('graph with the vanilla API. We create an oscillator and a gain ' + 'node, set some parameters, and then connect them all together. ')),
-							author$project$Content$Sections$Code(
-							_List_fromArray(
-								['const osc = context.createOscillator()', 'const amp = context.createGain()', '', 'osc.frequency.value = 440', 'amp.gain.value = 0.5', '', 'osc.connect(amp)', 'amp.connect(context.destination)', '', 'osc.start()'])),
-							author$project$Content$Sections$Paragraph('There\'s a lot of bookkeeping involved here, we have to ' + ('store each node in a variable and then access that node to set some ' + ('parameters. This quickly gets out of hand with larger audio graphs. ' + ('Below is the elm-web-audio alternative. The library provides an API ' + ('similar to Elm\'s own html library that leads to a highly declarative ' + 'and very visual way of describing Web Audio graphs.'))))),
-							author$project$Content$Sections$Code(
-							_List_fromArray(
-								['N.oscillator [ P.frequency 440 ]', '  [ N.gain [ P.gain 0.5 ]', '    [ N.dac ]', '  ]'])),
-							author$project$Content$Sections$Paragraph('This let\'s us focus on what the audio graph should be ' + ('instead of how to create it. As Elm cannot call javascript code ' + ('directly (pesky purity), a companion example implementation for a ' + ('virtual audio graph is provded in the repository. The graph just ' + 'needs to be sent via a port to javascript land to be constructed.'))))
-						]),
-					github: 'https://github.com/pd-andy/elm-web-audio',
-					technology: 'elm / web audio / library',
-					title: 'elm-web-audio'
-				}),
-				author$project$Content$Sections$Project(
-				{
-					description: _List_fromArray(
-						[
-							author$project$Content$Sections$Paragraph('Do is your typical, run-of-the-mill, front-end developer ' + ('todo list app. Built as a first proper project using Elm as well as ' + ('an opportunity to test out a utility-first css approach with ' + ('tailwind, do supports creating / completing / discarding todos that ' + 'get saved locally using the localStorage API.')))),
-							author$project$Content$Sections$Image(doImgUrl)
-						]),
-					github: 'https://github.com/pd-andy/do-app',
-					technology: 'elm / localstorage / tailwindcss / application',
-					title: 'do-app'
-				})
-			]),
-		heading: 'Projects',
-		id: 'projects'
-	};
+var author$project$Content$Sections$projects = {
+	colour: 'purple',
+	content: _List_fromArray(
+		[
+			author$project$Content$Sections$Project(
+			{
+				description: _List_fromArray(
+					[
+						author$project$Content$Sections$Paragraph('Flow is a complete framework for building complex Web ' + ('Audio applications with javascript. It\'s built on an elm-like ' + ('Model-View-Update architecture and couples strict separation of ' + 'concerns with a concise declarative API for Web Audio programming.')))
+					]),
+				github: 'https://github.com/flow-lang/flow-framework',
+				technology: 'javascript / web audio / framework',
+				title: 'Flow'
+			}),
+			author$project$Content$Sections$Project(
+			{
+				description: _List_fromArray(
+					[
+						author$project$Content$Sections$Paragraph('Programming with the vanilla Web Audio API is a largely ' + ('imperative, and object-oriented, affair. Elm-web-audio is an ' + 'alternative, declarative, API for Web Audio programming in Elm.'))
+					]),
+				github: 'https://github.com/pd-andy/elm-web-audio',
+				technology: 'elm / web audio / library',
+				title: 'elm-web-audio'
+			}),
+			author$project$Content$Sections$Project(
+			{
+				description: _List_fromArray(
+					[
+						author$project$Content$Sections$Paragraph('Do is your typical, run-of-the-mill, front-end developer ' + ('todo list app. Built as a first proper project using Elm as well as ' + ('an opportunity to test out a utility-first css approach with ' + ('tailwind, do supports creating / completing / discarding todos that ' + 'get saved locally using the localStorage API.'))))
+					]),
+				github: 'https://github.com/pd-andy/do-app',
+				technology: 'elm / localstorage / tailwindcss / application',
+				title: 'do-app'
+			})
+		]),
+	heading: 'Projects',
+	id: 'projects'
 };
 var author$project$Content$Sections$Skill = function (a) {
 	return {$: 'Skill', a: a};
@@ -5267,9 +5173,6 @@ var author$project$Content$Sections$skills = {
 	content: _List_fromArray(
 		[
 			author$project$Content$Sections$Paragraph('Here you\'ll find a memory dump of the various technologies ' + ('I\'ve learned and used up until now. These things are usually rated on ' + 'a fairly arbitrary scale, so here\'s my best attempt at keeping it real:')),
-			author$project$Content$Sections$Paragraph('• Comfortable = I\'ve used this tech for quite a while now. I\'m ' + ('aware of best practices and some the quirks and I\'d be comfortable being ' + 'thrown into the deep end using this.')),
-			author$project$Content$Sections$Paragraph('• Familiar = I\'ve used this tech a little bit. With some ' + ('guidance I could create some cool things, but I\'ll probably make some ' + 'mistakes on the way.')),
-			author$project$Content$Sections$Paragraph('• Aware = This tech is on my radar, and I might\'ve used it ' + ('a little bit in the past. Maybe it is similar to something else I\'m ' + ('comfortable with or maybe it\'s a totally different mindset shift. I ' + ('haven\'t invested much time into learning this, but I\'d be willing to ' + 'in the future.')))),
 			author$project$Content$Sections$Subheading('Languages'),
 			author$project$Content$Sections$Skill(
 			{level: 'Comfortable', name: 'JavaScript'}),
@@ -5706,13 +5609,7 @@ var author$project$Main$init = function (flags) {
 		{
 			focusedElement: 'about',
 			sections: _List_fromArray(
-				[
-					author$project$Content$Sections$about,
-					author$project$Content$Sections$education,
-					author$project$Content$Sections$experience,
-					author$project$Content$Sections$projects(flags.images._do),
-					author$project$Content$Sections$skills
-				]),
+				[author$project$Content$Sections$about, author$project$Content$Sections$education, author$project$Content$Sections$experience, author$project$Content$Sections$projects, author$project$Content$Sections$skills]),
 			socials: author$project$Content$Socials$all
 		},
 		elm$core$Platform$Cmd$none);
@@ -5803,8 +5700,8 @@ var author$project$Content$Nav$item = F3(
 			_List_fromArray(
 				[
 					elm$html$Html$Attributes$class(
-					_Utils_eq(focusedSection, id) ? ('text-' + (colour + '-500')) : 'text-gray-900'),
-					elm$html$Html$Attributes$class('font-bold text-lg'),
+					_Utils_eq(focusedSection, id) ? ('text-' + (colour + '-600')) : 'text-gray-900'),
+					elm$html$Html$Attributes$class('font-bold text-xl'),
 					elm$html$Html$Attributes$class('my-2'),
 					elm$html$Html$Events$onClick(
 					msg(id))
@@ -5901,7 +5798,6 @@ var elm$html$Html$div = _VirtualDom_node('div');
 var elm$html$Html$h2 = _VirtualDom_node('h2');
 var elm$html$Html$h3 = _VirtualDom_node('h3');
 var elm$html$Html$i = _VirtualDom_node('i');
-var elm$html$Html$img = _VirtualDom_node('img');
 var elm$html$Html$p = _VirtualDom_node('p');
 var elm$html$Html$pre = _VirtualDom_node('pre');
 var elm$html$Html$span = _VirtualDom_node('span');
@@ -5918,12 +5814,6 @@ var elm$html$Html$Attributes$href = function (url) {
 		elm$html$Html$Attributes$stringProperty,
 		'href',
 		_VirtualDom_noJavaScriptUri(url));
-};
-var elm$html$Html$Attributes$src = function (url) {
-	return A2(
-		elm$html$Html$Attributes$stringProperty,
-		'src',
-		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
 var author$project$Content$Sections$viewSectionContent = function (content) {
 	switch (content.$) {
@@ -5974,25 +5864,6 @@ var author$project$Content$Sections$viewSectionContent = function (content) {
 								]));
 					},
 					lines));
-		case 'Image':
-			var url = content.a;
-			return A2(
-				elm$html$Html$div,
-				_List_fromArray(
-					[
-						elm$html$Html$Attributes$class('mt-4 shadow')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						elm$html$Html$img,
-						_List_fromArray(
-							[
-								elm$html$Html$Attributes$src(url),
-								elm$html$Html$Attributes$class('w-full rounded-lg')
-							]),
-						_List_Nil)
-					]));
 		case 'University':
 			var degree = content.a.degree;
 			var university = content.a.university;
@@ -6198,7 +6069,7 @@ var author$project$Content$Sections$view = function (section) {
 				elm$html$Html$h1,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class('lg:text-6xl text-2xl font-semibold border-b-4 border-gray-900 mb-4')
+						elm$html$Html$Attributes$class('lg:text-6xl text-4xl font-semibold border-b-4 border-gray-900 mb-4')
 					]),
 				_List_fromArray(
 					[
@@ -6271,7 +6142,7 @@ var author$project$Main$view = function (model) {
 				elm$html$Html$aside,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class('flex flex-col items-center justify-around bg-gray-100 text-gray-900 px-10')
+						elm$html$Html$Attributes$class('flex flex-col items-center justify-around bg-white text-gray-900 px-10')
 					]),
 				_List_fromArray(
 					[
@@ -10468,31 +10339,10 @@ var elm$url$Url$fromString = function (str) {
 		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
 };
 var elm$browser$Browser$element = _Browser_element;
-var elm$json$Json$Decode$andThen = _Json_andThen;
 var author$project$Main$main = elm$browser$Browser$element(
 	{init: author$project$Main$init, subscriptions: author$project$Main$subscriptions, update: author$project$Main$update, view: author$project$Main$view});
 _Platform_export({'Main':{'init':author$project$Main$main(
-	A2(
-		elm$json$Json$Decode$andThen,
-		function (images) {
-			return elm$json$Json$Decode$succeed(
-				{images: images});
-		},
-		A2(
-			elm$json$Json$Decode$field,
-			'images',
-			A2(
-				elm$json$Json$Decode$andThen,
-				function (flow) {
-					return A2(
-						elm$json$Json$Decode$andThen,
-						function (_do) {
-							return elm$json$Json$Decode$succeed(
-								{_do: _do, flow: flow});
-						},
-						A2(elm$json$Json$Decode$field, 'do', elm$json$Json$Decode$string));
-				},
-				A2(elm$json$Json$Decode$field, 'flow', elm$json$Json$Decode$string)))))({"versions":{"elm":"0.19.0"},"types":{"message":"Main.Msg","aliases":{},"unions":{"Main.Msg":{"args":[],"tags":{"FocusedElement":["String.String"],"ScrollTo":["String.String"]}},"String.String":{"args":[],"tags":{"String":[]}}}}})}});
+	elm$json$Json$Decode$succeed(_Utils_Tuple0))({"versions":{"elm":"0.19.0"},"types":{"message":"Main.Msg","aliases":{},"unions":{"Main.Msg":{"args":[],"tags":{"FocusedElement":["String.String"],"ScrollTo":["String.String"]}},"String.String":{"args":[],"tags":{"String":[]}}}}})}});
 
 //////////////////// HMR BEGIN ////////////////////
 
@@ -11033,6 +10883,29 @@ if (module.hot) {
 
 
 }(this));
+},{}],"js/elmPromisify.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(Elm, _ref) {
+  var node = _ref.node,
+      flags = _ref.flags;
+  var app = Elm.init({
+    node: node,
+    flags: flags
+  });
+  return new Promise(function (resolve) {
+    window.requestAnimationFrame(function () {
+      resolve(app);
+    });
+  });
+};
+
+exports.default = _default;
 },{}],"js/mostInViewport.js":[function(require,module,exports) {
 "use strict";
 
@@ -11045,36 +10918,35 @@ exports.default = void 0;
 // data every time we scroll.
 var lastFocusedSection = '';
 
-var _default = function _default(app) {
-  return function (e) {
-    // Get all of this element's children and work out which ones are currently
-    // visible in the viewport.
-    var sections = Array.from(e.target.children) // Map each element to an object with only the useful information in it.
-    .map(function (section) {
-      var bounding = section.getBoundingClientRect();
-      return {
-        y: Math.abs(bounding.y),
-        id: section.id,
-        inViewport: bounding.y < window.innerHeight && bounding.y > -window.innerHeight - bounding.height
-      };
-    }) // Filter out all the elements that aren't currently visible in the viewport.
-    .filter(function (section) {
-      return section.inViewport;
-    }) // Sort the array so that the most prominent section is the first item in
-    // the array.
-    .sort(function (a, b) {
-      return a.y - b.y;
-    }); //
+var _default = function _default(e) {
+  // Get all of this element's children and work out which ones are currently
+  // visible in the viewport.
+  var sections = Array.from(e.target.children) // Map each element to an object with only the useful information in it.
+  .map(function (section) {
+    var bounding = section.getBoundingClientRect();
+    return {
+      y: Math.abs(bounding.y),
+      id: section.id,
+      inViewport: bounding.y < window.innerHeight && bounding.y > -window.innerHeight - bounding.height
+    };
+  }) // Filter out all the elements that aren't currently visible in the viewport.
+  .filter(function (section) {
+    return section.inViewport;
+  }) // Sort the array so that the most prominent section is the first item in
+  // the array.
+  .sort(function (a, b) {
+    return a.y - b.y;
+  }); //
 
-    var focusedSection = sections.shift();
+  var focusedSection = sections.shift();
 
-    if (focusedSection.id !== lastFocusedSection) {
-      app.ports.onFocusChange.send(focusedSection.id);
-      window.history.pushState(null, null, "#".concat(focusedSection.id));
-    }
-
+  if (focusedSection.id !== lastFocusedSection) {
     lastFocusedSection = focusedSection.id;
-  };
+    return focusedSection.id;
+  } else {
+    lastFocusedSection = focusedSection.id;
+    return null;
+  }
 };
 
 exports.default = _default;
@@ -11097,13 +10969,9 @@ exports.default = _default;
 },{}],"main.js":[function(require,module,exports) {
 "use strict";
 
-require("@fortawesome/fontawesome-free/css/all.min.css");
-
-var _doApp = _interopRequireDefault(require("./img/do-app.png"));
-
-var _flowArchitecture = _interopRequireDefault(require("./img/flow-architecture.png"));
-
 var _Main = require("./elm/Main.elm");
+
+var _elmPromisify = _interopRequireDefault(require("./js/elmPromisify"));
 
 var _mostInViewport = _interopRequireDefault(require("./js/mostInViewport"));
 
@@ -11111,24 +10979,27 @@ var _scrollTo = _interopRequireDefault(require("./js/scrollTo"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// CSS imports
-// Image imports
-//
-var app = _Main.Elm.Main.init({
-  node: document.querySelector('#elm-container'),
-  flags: {
-    images: {
-      do: _doApp.default,
-      flow: _flowArchitecture.default
-    }
-  }
-});
+var node = document.querySelector('#elm-container');
+var flags = {}; // elmPromisify resolves an elm app after the next animation frame, guaranteeing
+// the elm app gets a chance to render at least once.
 
-app.ports.scrollToElement.subscribe(_scrollTo.default);
-window.requestAnimationFrame(function () {
-  document.querySelector('main').addEventListener('scroll', (0, _mostInViewport.default)(app));
+(0, _elmPromisify.default)(_Main.Elm.Main, {
+  node: node,
+  flags: flags
+}).then(function (app) {
+  // elm -> js ports
+  app.ports.scrollToElement.subscribe(_scrollTo.default); // js -> elm ports
+
+  document.querySelector('main').addEventListener('scroll', function (e) {
+    var focusedElement = (0, _mostInViewport.default)(e);
+
+    if (focusedElement) {
+      app.ports.onFocusChange.send(focusedElement);
+      window.history.pushState(null, null, "#".concat(focusedElement));
+    }
+  });
 });
-},{"@fortawesome/fontawesome-free/css/all.min.css":"../node_modules/@fortawesome/fontawesome-free/css/all.min.css","./img/do-app.png":"img/do-app.png","./img/flow-architecture.png":"img/flow-architecture.png","./elm/Main.elm":"elm/Main.elm","./js/mostInViewport":"js/mostInViewport.js","./js/scrollTo":"js/scrollTo.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./elm/Main.elm":"elm/Main.elm","./js/elmPromisify":"js/elmPromisify.js","./js/mostInViewport":"js/mostInViewport.js","./js/scrollTo":"js/scrollTo.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -11156,7 +11027,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54899" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61297" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
