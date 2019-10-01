@@ -4990,6 +4990,7 @@ function _Browser_load(url)
 		}
 	}));
 }
+var author$project$Colour$Teal = {$: 'Teal'};
 var author$project$Content$Sections$Paragraph = function (a) {
 	return {$: 'Paragraph', a: a};
 };
@@ -5079,7 +5080,7 @@ var elm$core$Set$toList = function (_n0) {
 };
 var elm$core$Basics$append = _Utils_append;
 var author$project$Content$Sections$about = {
-	colour: 'teal',
+	colour: author$project$Colour$Teal,
 	content: _List_fromArray(
 		[
 			author$project$Content$Sections$Paragraph('I\'m a PhD student on the Media and Arts Technology programme ' + ('at Queen Mary University of London. My research is in the field of music ' + ('computing, particularly looking at how programming languages are designed ' + 'for musicians and audio programmers.'))),
@@ -5089,11 +5090,12 @@ var author$project$Content$Sections$about = {
 	heading: 'About',
 	id: 'about'
 };
+var author$project$Colour$Blue = {$: 'Blue'};
 var author$project$Content$Sections$University = function (a) {
 	return {$: 'University', a: a};
 };
 var author$project$Content$Sections$education = {
-	colour: 'blue',
+	colour: author$project$Colour$Blue,
 	content: _List_fromArray(
 		[
 			author$project$Content$Sections$University(
@@ -5106,11 +5108,12 @@ var author$project$Content$Sections$education = {
 	heading: 'Education',
 	id: 'education'
 };
+var author$project$Colour$Indigo = {$: 'Indigo'};
 var author$project$Content$Sections$Job = function (a) {
 	return {$: 'Job', a: a};
 };
 var author$project$Content$Sections$experience = {
-	colour: 'indigo',
+	colour: author$project$Colour$Indigo,
 	content: _List_fromArray(
 		[
 			author$project$Content$Sections$Job(
@@ -5121,11 +5124,12 @@ var author$project$Content$Sections$experience = {
 	heading: 'Experience',
 	id: 'experience'
 };
+var author$project$Colour$Purple = {$: 'Purple'};
 var author$project$Content$Sections$Project = function (a) {
 	return {$: 'Project', a: a};
 };
 var author$project$Content$Sections$projects = {
-	colour: 'purple',
+	colour: author$project$Colour$Purple,
 	content: _List_fromArray(
 		[
 			author$project$Content$Sections$Project(
@@ -5162,6 +5166,7 @@ var author$project$Content$Sections$projects = {
 	heading: 'Projects',
 	id: 'projects'
 };
+var author$project$Colour$Pink = {$: 'Pink'};
 var author$project$Content$Sections$Skill = function (a) {
 	return {$: 'Skill', a: a};
 };
@@ -5169,7 +5174,7 @@ var author$project$Content$Sections$Subheading = function (a) {
 	return {$: 'Subheading', a: a};
 };
 var author$project$Content$Sections$skills = {
-	colour: 'pink',
+	colour: author$project$Colour$Pink,
 	content: _List_fromArray(
 		[
 			author$project$Content$Sections$Paragraph('Here you\'ll find a memory dump of the various technologies ' + ('I\'ve learned and used up until now. These things are usually rated on ' + 'a fairly arbitrary scale, so here\'s my best attempt at keeping it real:')),
@@ -5645,6 +5650,54 @@ var author$project$Main$update = F2(
 				author$project$Main$scrollToElement(id));
 		}
 	});
+var author$project$Colour$toHover = function (colour) {
+	switch (colour.$) {
+		case 'Gray':
+			return 'hover:text-gray-600';
+		case 'Red':
+			return 'hover:text-red-600';
+		case 'Orange':
+			return 'hover:text-orange-600';
+		case 'Yellow':
+			return 'hover:text-yellow-600';
+		case 'Green':
+			return 'hover:text-green-600';
+		case 'Teal':
+			return 'hover:text-teal-600';
+		case 'Blue':
+			return 'hover:text-blue-600';
+		case 'Indigo':
+			return 'hover:text-indigo-600';
+		case 'Purple':
+			return 'hover:text-purple-600';
+		default:
+			return 'hover:text-pink-600';
+	}
+};
+var author$project$Colour$toText = function (colour) {
+	switch (colour.$) {
+		case 'Gray':
+			return 'text-gray-600';
+		case 'Red':
+			return 'text-red-600';
+		case 'Orange':
+			return 'text-orange-600';
+		case 'Yellow':
+			return 'text-yellow-600';
+		case 'Green':
+			return 'text-green-600';
+		case 'Teal':
+			return 'text-teal-600';
+		case 'Blue':
+			return 'text-blue-600';
+		case 'Indigo':
+			return 'text-indigo-600';
+		case 'Purple':
+			return 'text-purple-600';
+		default:
+			return 'text-pink-600';
+	}
+};
 var elm$core$Basics$identity = function (x) {
 	return x;
 };
@@ -5700,9 +5753,10 @@ var author$project$Content$Nav$item = F3(
 			_List_fromArray(
 				[
 					elm$html$Html$Attributes$class(
-					_Utils_eq(focusedSection, id) ? ('text-' + (colour + '-600')) : 'text-gray-900'),
-					elm$html$Html$Attributes$class('font-bold text-xl'),
-					elm$html$Html$Attributes$class('my-2'),
+					_Utils_eq(focusedSection, id) ? author$project$Colour$toText(colour) : 'text-gray-900'),
+					elm$html$Html$Attributes$class(
+					author$project$Colour$toHover(colour)),
+					elm$html$Html$Attributes$class('font-bold text-xl my-2'),
 					elm$html$Html$Events$onClick(
 					msg(id))
 				]),
@@ -5722,6 +5776,30 @@ var author$project$Content$Nav$list = function (children) {
 				elm$html$Html$Attributes$class('flex flex-col items-center justify-center')
 			]),
 		children);
+};
+var author$project$Colour$toBackground = function (colour) {
+	switch (colour.$) {
+		case 'Gray':
+			return 'bg-gray-100';
+		case 'Red':
+			return 'bg-red-100';
+		case 'Orange':
+			return 'bg-orange-100';
+		case 'Yellow':
+			return 'bg-yellow-100';
+		case 'Green':
+			return 'bg-green-100';
+		case 'Teal':
+			return 'bg-teal-100';
+		case 'Blue':
+			return 'bg-blue-100';
+		case 'Indigo':
+			return 'bg-indigo-100';
+		case 'Purple':
+			return 'bg-purple-100';
+		default:
+			return 'bg-pink-100';
+	}
 };
 var elm$core$List$foldrHelper = F4(
 	function (fn, acc, ctr, ls) {
@@ -6061,7 +6139,9 @@ var author$project$Content$Sections$view = function (section) {
 		_List_fromArray(
 			[
 				elm$html$Html$Attributes$id(section.id),
-				elm$html$Html$Attributes$class('bg-' + (section.colour + '-100 p-8 lg:p-12'))
+				elm$html$Html$Attributes$class(
+				author$project$Colour$toBackground(section.colour)),
+				elm$html$Html$Attributes$class('p-8 lg:p-12')
 			]),
 		_List_fromArray(
 			[
@@ -11027,7 +11107,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61297" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51616" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
