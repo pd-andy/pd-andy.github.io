@@ -41,3 +41,18 @@ toText colour =
     Indigo -> "text-indigo-600"
     Purple -> "text-purple-600"
     Pink -> "text-pink-600"
+
+--
+toHover : Colour -> String
+toHover colour =
+  case colour of
+    Gray -> "hover:text-gray-600"
+    Red -> "hover:text-red-600"
+    Orange -> "hover:text-orange-600"
+    Yellow -> "hover:text-yellow-600"
+    Green -> "hover:text-green-600"
+    Teal -> "hover:text-teal-600"
+    Blue -> "hover:text-blue-600"
+    Indigo -> "hover:text-indigo-600"
+    Purple -> "hover:text-purple-600"
+    Pink -> "hover:text-pink-600"

@@ -15,8 +15,8 @@ item : String -> (String -> msg) -> { r | id : String, colour : Colour } -> Html
 item focusedSection msg { id, colour } =
   button
     [ class <| if focusedSection == id then Colour.toText colour else "text-gray-900"
-    , class "font-bold text-xl"
-    , class "my-2"
+    , class <| Colour.toHover colour
+    , class "font-bold text-xl my-2"
     , onClick <| msg id
     ]
     [ text id
