@@ -13,7 +13,36 @@
 
   </head>
   <body>
-    <template id="elm-container"></template>
+    <div id="elm-container">
+      <!-- As the noscript tag suggests, this content is only displayed when
+      visitors have javascript disabled. It provides the absolute bare minimum
+      just as a fallback. Elm will go ahead and remove the noscript tag and its
+      children nodes when it mounts onto the div above. -->
+      <noscript id="app">
+        <aside class="flex flex-col items-center justify-around bg-white text-gray-900 px-10">
+          <div>
+            <h1 class="text-3xl">Andrew Thompson</h1>
+            <h2 class="text-xl mb-4">PhD Student @ Queen Mary University of London</h2>
+            <hr class="border-2 border-gray-900 mb-4"/>
+            <p class="mb-2">If you'd like to contact me, you can reach my by email at
+              <a class="underline" href="mailto:andrew.thompson@qmul.ac.uk">andrew.thompson@qmul.ac.uk</a>.
+            </p>
+            <p>Or you can check out my github to see what I've been up to. My username
+              is <a class="underline" href="https://github.com/pd-andy">pd-andy</a>.
+            </p>
+          </div>
+
+          <div>
+            <p class="text-sm italic">
+              Hey, it looks like you don't have javascript enabled. That's alright,
+              not everything needs javascript these days anyway. Keep in mind I built
+              this website using Elm for fun, so you're missing a bit of content if you
+              leave js turned off!
+            </p>
+          </div>
+        </aside>
+      </noscript>
+    </div>
 
     <script src="main.js"></script>
     <script async src="https://kit.fontawesome.com/93af7a2211.js" crossorigin="anonymous"></script>
