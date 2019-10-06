@@ -1,0 +1,1 @@
+@media only screen and (min-width:601px){#app{display:grid;grid-template-columns:30vw 1fr;grid-template-rows:100vh}#app>main{max-height:100vh;overflow:scroll}}@media only screen and (max-width:600px){#app{display:flex;flex-direction:column}#app>aside{height:100vh}}
