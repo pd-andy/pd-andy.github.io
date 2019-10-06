@@ -1,5 +1,5 @@
 import { Elm } from './elm/Main.elm'
-import elmPromisify from './js/elmPromisify'
+import { promisify } from 'elm-promisify'
 import mostInViewport from './js/mostInViewport'
 import scrollIntoView from './js/scrollTo'
 
@@ -8,7 +8,7 @@ const flags = {}
 
 // elmPromisify resolves an elm app after the next animation frame, guaranteeing
 // the elm app gets a chance to render at least once.
-elmPromisify(Elm.Main, { node, flags }).then(app => {
+promisify(Elm.Main, { node, flags }).then(app => {
   // elm -> js ports
   app.ports.scrollToElement.subscribe(scrollIntoView)
 

@@ -17,5 +17,8 @@
     "node-elm-compiler": "^5.0.4",
     "parcel-bundler": "^1.12.3",
     "tailwindcss": "^1.1.2"
+  },
+  "dependencies": {
+    "elm-promisify": "^1.0.0"
   }
 }
