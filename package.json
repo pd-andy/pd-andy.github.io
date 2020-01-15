@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/index.html",
+    "dev:no-cache": "parcel src/index.html --no-cache",
     "deploy": "parcel build src/index.html --no-source-maps --no-content-hash && node deploy"
   },
   "author": "",
@@ -12,13 +13,16 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^1.3.0",
     "autoprefixer": "^9.6.1",
-    "elm-hot": "^1.1.2",
+    "cssnano": "^4.1.10",
+    "elm-hot": "^1.1.4",
     "gh-pages": "^2.1.1",
     "node-elm-compiler": "^5.0.4",
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-static-files-copy": "^2.2.1",
     "tailwindcss": "^1.1.2"
   },
-  "dependencies": {
-    "elm-promisify": "^1.0.0"
+  "dependencies": {},
+  "staticFiles": {
+    "staticPath": "assets"
   }
 }

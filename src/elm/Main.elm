@@ -1,98 +1,151 @@
-port module Main exposing (Model, Msg, update, view, subscriptions, init)
-
-import Browser
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
-
-import Content.Nav
-import Content.Socials exposing (SocialMedia)
-import Content.Sections exposing (Section)
-
-
--- PORTS -----------------------------------------------------------------------
--- 
-port onFocusChange : (String -> msg) -> Sub msg
---
-port scrollToElement : String -> Cmd msg
-
--- MAIN ------------------------------------------------------------------------
---
-main : Program () Model Msg
-main =
-  Browser.element
-    { init = init
-    , view = view
-    , update = update
-    , subscriptions = subscriptions
-    }
-
--- MODEL -----------------------------------------------------------------------
---
-type alias Model =
-  { focusedElement : String
-  , sections : List Section
-  , socials : List SocialMedia
-  }
-
---
-init : () -> (Model, Cmd Msg)
-init flags = 
-  ( { focusedElement = "about"
-    , sections =
-      [ Content.Sections.about
-      , Content.Sections.education
-      , Content.Sections.experience
-      , Content.Sections.projects
-      , Content.Sections.skills
-      ]
-    , socials = Content.Socials.all
-    }
-  , Cmd.none
+module Main exposing 
+  ( main 
   )
 
--- UPDATE ----------------------------------------------------------------------
---
+{- Imports ------------------------------------------------------------------ -}
+import Browser
+import Browser.Navigation
+import Tuple.Extra
+import Url exposing (Url)
+
+import Layout.Default
+
+import Page.About
+
+
+{- Model -------------------------------------------------------------------- -}
+{-| -}
+type alias App =
+  { page : (Layout, Page)
+  , key : Browser.Navigation.Key
+  , model : Model
+  }
+
+{-| -}
+type alias Model =
+  {
+  }
+
+{-| -}
+type Layout
+  = Default
+
+{-| -}
+type Page
+  = About
+
+
+{-| -}
+init : () -> Url -> Browser.Navigation.Key -> (App, Cmd Msg)
+init _ url key =
+  Tuple.Extra.pairWith Cmd.none <|
+    { page = route url
+    , key = key
+    , model = 
+      {
+      }
+    }
+
+{- Update ------------------------------------------------------------------- -}
+{-| -}
 type Msg
-  = FocusedElement String
-  | ScrollTo String
+  = InternalUrlRequest Url
+  | ExternalUrlRequest String
+  | NavigateTo (Layout, Page)
 
---
-update : Msg -> Model -> (Model, Cmd Msg)
-update msg model =
+{-| -}
+update : Msg -> App -> (App, Cmd Msg)
+update msg {page, key, model} =
   case msg of
-    FocusedElement id ->
-      ( { model | focusedElement = id }
-      , Cmd.none
-      )
+    InternalUrlRequest url ->
+      Tuple.Extra.pairWith (Browser.Navigation.pushUrl key (Url.toString url)) <|
+        { page = page
+        , key = key
+        , model = model
+        }
 
-    ScrollTo id ->
-      ( model
-      , scrollToElement id
-      )
+    ExternalUrlRequest url ->
+      Tuple.Extra.pairWith (Browser.Navigation.load url) <|
+        { page = page
+        , key = key
+        , model = model
+        }
 
--- VIEW ------------------------------------------------------------------------
---
-view : Model -> Html Msg
-view model =
-  div [ id "app" ]
-    [ aside [ class "flex flex-col items-center justify-around bg-white text-gray-900 px-10" ]
-      [ div [] 
-        [ h1 [ class "text-3xl" ] [ text "Andrew Thompson" ]
-        , h2 [ class "text-xl mb-4" ] [ text "PhD student @ Queen Mary University of London" ]
-        , Content.Socials.list model.socials
-        ]
-      , Content.Nav.list 
-          <| List.map (Content.Nav.item model.focusedElement ScrollTo) model.sections
-      ]
-    , main_ [ class "shadow-xl" ]
-        <| List.map Content.Sections.view model.sections
-    ]
+    NavigateTo newPage ->
+      Tuple.Extra.pairWith Cmd.none <|
+        { page = newPage
+        , key = key
+        , model = model
+        }
 
--- SUBSCRIPTIONS ---------------------------------------------------------------
---
-subscriptions : Model -> Sub Msg
-subscriptions model =
-  Sub.batch
-    [ onFocusChange FocusedElement
-    ]
+{-| -}
+route : Url -> (Layout, Page)
+route { path } =
+  case path of
+    "/" -> (Default, About)
+    _   -> (Default, About)
+
+{- View --------------------------------------------------------------------- -}
+{-| -}
+view : App -> Browser.Document Msg
+view { page, model } =
+  let
+    layout  = Tuple.first page
+    content = Tuple.second page
+  in
+  viewPage content model
+    |> viewLayout layout
+
+{-| -}
+viewLayout : Layout -> (Browser.Document Msg -> Browser.Document Msg)
+viewLayout layout =
+  case layout of
+    Default ->
+      Layout.Default.view
+
+{-| -}
+viewPage : Page -> Model -> Browser.Document Msg
+viewPage page model =
+  case page of
+    About ->
+      Page.About.view {} {}
+
+{- Subscriptions ------------------------------------------------------------ -}
+{-| -}
+subscriptions : App -> Sub Msg
+subscriptions _ =
+  Sub.none
+
+{- Main --------------------------------------------------------------------- -}
+{-| -}
+main : Program () App Msg
+main =
+  Browser.application
+      { init = init
+      , view = view
+      , update = update
+      , subscriptions = subscriptions
+      , onUrlChange = onUrlChange
+      , onUrlRequest = onUrlRequest
+      }
+
+{-| This is called whenever we call Browser.Navigation.pushUrl and is used to
+determine what route to render.
+-}
+onUrlChange : Url -> Msg
+onUrlChange url =
+  NavigateTo (route url)
+
+{-| This function is called whenever an <a>nchor element is clicked. The type of
+url request (internal or external) is based on the url itself. Internal requests
+include things like #about or /projects and should be used by the router to
+navigate to the appropriate SPA page.
+-}
+onUrlRequest : Browser.UrlRequest -> Msg
+onUrlRequest urlRequest =
+  case urlRequest of
+    Browser.Internal url ->
+      InternalUrlRequest url
+
+    Browser.External url ->
+      ExternalUrlRequest url

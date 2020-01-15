@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
+
+html {
+  font-family: 'Lexend Deca';
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hover\:wavy:hover {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1IDMiPjxzdHlsZT5Aa2V5ZnJhbWVzIHNoaWZ0IHsgIGZyb20geyAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMCk7ICB9ICB0byB7ICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtNXB4KTsgIH19PC9zdHlsZT48cGF0aCBkPSJNMCAyLjVjMS4zIDAgMS4zLTIgMi41LTJzMS4zIDIgMi41IDIgMS4zLTIgMi41LTIgMS4zIDIgMi41IDIiIHN0eWxlPSJhbmltYXRpb246IHNoaWZ0IC41cyBsaW5lYXIgaW5maW5pdGU7IGZpbGw6IG5vbmU7IHN0cm9rZTogI0ZGMDBFMTsiLz48L3N2Zz4=);
+  background-position: 0 50%;
+  background-size: auto 0.5em;
+  background-repeat: repeat-x; 
+}
+
+.underline-wavy {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+}
+
 @tailwind utilities;
