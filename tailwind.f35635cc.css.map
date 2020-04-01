@@ -1,0 +1,1 @@
+{"version":3,"sources":["tailwind.css"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;sBAasB","file":"tailwind.f35635cc.css","sourceRoot":"../src","sourcesContent":["/* @tailwind base;\n@tailwind components;\n\nhtml {\n  font-family: 'Lexend Deca';\n}\n\nbody {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n}\n\n@tailwind utilities; */\n\n"]}
